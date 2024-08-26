@@ -9,12 +9,12 @@ branding:
 inputs:
   file:
     description: "The relative path of toml file"
-    required: true
+    required: false
 
 outputs:
   version:
     description: "The version of the crate"
 
 runs:
-  using: "node16"
+  using: "node20"
   main: "dist/index.js"

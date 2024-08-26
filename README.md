@@ -10,7 +10,7 @@ This is a Github action, you can use it to extract your Rust crate version. Read
 ```yaml
 - name: Crate Version
   id: crate-version
-  uses: colathro/crate-version@1.0.0
+  uses: colathro/crate-version@2.0.0
   with:
     file: "./Cargo.toml"
 ```
@@ -19,9 +19,9 @@ This is a Github action, you can use it to extract your Rust crate version. Read
 
 All arguments are of type string.
 
-| Name | Required | Description                    |
-| ---- | -------- | ------------------------------ |
-| file | Yes      | The relative path of toml file |
+| Name | Required | Description                    | Default    |
+| ---- | -------- | ------------------------------ | ---------- |
+| file | False    | The relative path of toml file | Cargo.toml |
 
 ### Cargo.toml Example
 
@@ -55,9 +55,8 @@ jobs:
 
       - name: Crate Version
         id: crate-version
-        uses: colathro/crate-version@1.0.0
-        with:
-          file: "./Cargo.toml"
+        uses: colathro/crate-version@2.0.0
+
       - name: Use Version Output
         run: echo ${{ steps.crate-version.outputs.version }}
 ```

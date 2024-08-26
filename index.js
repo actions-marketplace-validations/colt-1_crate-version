@@ -5,7 +5,7 @@ const toml = require("@iarna/toml");
 
 function run() {
   try {
-    const fileName = core.getInput("file", { required: true });
+    const fileName = core.getInput("file", { required: false }) || "Cargo.json";
     const filePath = path.join(process.env.GITHUB_WORKSPACE, fileName);
 
     let tomlContent = getTomlContent(filePath);
@@ -17,7 +17,7 @@ function run() {
       throw Error("version not found");
     }
 
-    core.setOutput("version", version);
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, `version=${version}`);
   } catch (error) {
     core.setFailed(error.message);
   }
